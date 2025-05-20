@@ -1,0 +1,20 @@
+version: '3'
+
+# 프로덕션 환경을 위한 Docker Compose 설정
+# 실행 방법: docker-compose -f docker-compose.yml -f docker-compose.prod.yml up
+
+services:
+  next-js-test:
+    build:
+      target: runner
+    environment:
+      - NODE_ENV=production
+    container_name: next-js-test-prod
+    restart: always
+    # 프로덕션 환경에서는 볼륨 마운트 없음 (빌드 시 코드가 이미지에 포함됨)
+    # 프로덕션에 적합한 로깅 설정
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"

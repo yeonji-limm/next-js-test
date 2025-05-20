@@ -1,0 +1,12 @@
+version: '3'
+
+# 공통 설정을 위한 기본 docker-compose 파일
+# 이 파일은 직접 사용하지 않고, 환경별 파일에서 확장하여 사용합니다.
+
+services:
+  next-js-test:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "3000:3000"

@@ -1,0 +1,21 @@
+version: '3'
+
+# 개발 환경을 위한 Docker Compose 설정
+# 실행 방법: docker-compose -f docker-compose.yml -f docker-compose.dev.yml up
+
+services:
+  next-js-test:
+    build:
+      target: development
+    volumes:
+      - ..:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=development
+    command: npm run dev
+    container_name: next-js-test-dev
+    restart: unless-stopped
+    # 개발 환경에서 핫 리로딩을 위한 설정
+    stdin_open: true
+    tty: true
